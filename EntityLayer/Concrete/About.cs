@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace EntityLayer.Concrete
 {
-    public class Category
+    public class About
     {
         [Key]
-        public int CategoryId { get; set; }
-        public string CategoryName { get; set; }
-        public ICollection<User>? User{ get; set; }
+        public int About_Id { get; set; }
+        public string Title { get; set; }
+        public string Content { get; set; }
     }
 }

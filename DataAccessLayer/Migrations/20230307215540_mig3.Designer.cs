@@ -4,14 +4,16 @@ using DataAccessLayer.Concrete;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DataAccessLayer.Migrations
 {
     [DbContext(typeof(Context))]
-    partial class ContextModelSnapshot : ModelSnapshot
+    [Migration("20230307215540_mig3")]
+    partial class mig3
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -89,7 +91,10 @@ namespace DataAccessLayer.Migrations
                     b.Property<string>("Content")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("Job_Id")
+                    b.Property<int>("Job_Id")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("Job_Id1")
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
@@ -100,7 +105,7 @@ namespace DataAccessLayer.Migrations
 
                     b.HasKey("Employee_Id");
 
-                    b.HasIndex("Job_Id");
+                    b.HasIndex("Job_Id1");
 
                     b.ToTable("Employees");
                 });
@@ -157,7 +162,7 @@ namespace DataAccessLayer.Migrations
                 {
                     b.HasOne("EntityLayer.Concrete.Job", "job")
                         .WithMany("Employees")
-                        .HasForeignKey("Job_Id");
+                        .HasForeignKey("Job_Id1");
 
                     b.Navigation("job");
                 });

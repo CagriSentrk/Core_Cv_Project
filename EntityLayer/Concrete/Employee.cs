@@ -7,16 +7,14 @@ using System.Threading.Tasks;
 
 namespace EntityLayer.Concrete
 {
-    public class User
+    public class Employee
     {
         [Key]
-        public int UserId { get; set; }
+        public int Employee_Id { get; set; }
         public string Name { get; set; }
-        public string Surname { get; set; }
-        public int Experience { get; set; }
-        public string Cv { get; set; }
-        public Category? Category { get; set; }
-
-
+        public string SurName { get; set; }
+        public string Content { get; set; }
+  
+        public Job job { get; set; }
     }
 }

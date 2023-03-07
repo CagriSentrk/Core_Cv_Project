@@ -4,14 +4,16 @@ using DataAccessLayer.Concrete;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DataAccessLayer.Migrations
 {
     [DbContext(typeof(Context))]
-    partial class ContextModelSnapshot : ModelSnapshot
+    [Migration("20230307214111_mig2")]
+    partial class mig2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -35,6 +37,33 @@ namespace DataAccessLayer.Migrations
                     b.HasKey("About_Id");
 
                     b.ToTable("Abouts");
+                });
+
+            modelBuilder.Entity("EntityLayer.Concrete.Advert", b =>
+                {
+                    b.Property<int>("Advert_Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<string>("Content")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("Status")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Title")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("image_Url")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Advert_Id");
+
+                    b.ToTable("Adverts");
                 });
 
             modelBuilder.Entity("EntityLayer.Concrete.Bussines", b =>
@@ -79,32 +108,6 @@ namespace DataAccessLayer.Migrations
                     b.ToTable("Contacts");
                 });
 
-            modelBuilder.Entity("EntityLayer.Concrete.Employee", b =>
-                {
-                    b.Property<int>("Employee_Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
-
-                    b.Property<string>("Content")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("Job_Id")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("SurName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Employee_Id");
-
-                    b.HasIndex("Job_Id");
-
-                    b.ToTable("Employees");
-                });
-
             modelBuilder.Entity("EntityLayer.Concrete.Highliht", b =>
                 {
                     b.Property<int>("Highlihts_Id")
@@ -126,45 +129,47 @@ namespace DataAccessLayer.Migrations
                     b.ToTable("Highlihts");
                 });
 
-            modelBuilder.Entity("EntityLayer.Concrete.Job", b =>
+            modelBuilder.Entity("EntityLayer.Concrete.User", b =>
                 {
-                    b.Property<int>("Job_Id")
+                    b.Property<int>("User_Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .UseIdentityColumn();
 
+                    b.Property<int>("Advert_Id")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("Advert_Id1")
+                        .HasColumnType("int");
+
                     b.Property<string>("Content")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("Status")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Title")
+                    b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("img_Url")
+                    b.Property<string>("Surname")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Job_Id");
+                    b.HasKey("User_Id");
 
-                    b.ToTable("Jobs");
+                    b.HasIndex("Advert_Id1");
+
+                    b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("EntityLayer.Concrete.Employee", b =>
+            modelBuilder.Entity("EntityLayer.Concrete.User", b =>
                 {
-                    b.HasOne("EntityLayer.Concrete.Job", "job")
-                        .WithMany("Employees")
-                        .HasForeignKey("Job_Id");
+                    b.HasOne("EntityLayer.Concrete.Advert", "Advert")
+                        .WithMany("Users")
+                        .HasForeignKey("Advert_Id1");
 
-                    b.Navigation("job");
+                    b.Navigation("Advert");
                 });
 
-            modelBuilder.Entity("EntityLayer.Concrete.Job", b =>
+            modelBuilder.Entity("EntityLayer.Concrete.Advert", b =>
                 {
-                    b.Navigation("Employees");
+                    b.Navigation("Users");
                 });
 #pragma warning restore 612, 618
         }

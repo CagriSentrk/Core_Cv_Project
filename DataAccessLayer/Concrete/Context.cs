@@ -16,9 +16,13 @@ namespace DataAccessLayer.Concrete
             optionsBuilder.UseSqlServer("server=CSENTURK\\SQLSERVER;database=CoreCvDB;integrated security=true");
         }
 
-        public DbSet<Admin> Admins { get; set; }
-        public DbSet<Category> Categories { get; set; }
-        public DbSet<User> Users { get; set; }
+        public DbSet<Bussines> Bussinesses { get; set; }
+        public DbSet<About> Abouts { get; set; }
+        public DbSet<Highliht> Highlihts { get; set; }
+        public DbSet<Job> Jobs { get; set; }
+        public DbSet<Employee> Employees { get; set; }
+        public DbSet<Contact> Contacts { get; set; }
+       
       
 
     }
