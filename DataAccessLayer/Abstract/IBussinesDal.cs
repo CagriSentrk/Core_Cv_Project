@@ -7,7 +7,8 @@ using System.Threading.Tasks;
 
 namespace DataAccessLayer.Abstract
 {
-    public interface IBussinesDal: IGenericDal<Bussines>
+    public interface IBussinesDal : IGenericDal<Bussines>
     {
+      
     }
 }

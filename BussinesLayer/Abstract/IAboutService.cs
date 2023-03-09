@@ -5,10 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataAccessLayer.Abstract
+namespace BussinesLayer.Abstract
 {
-    public interface IHighLihtDal : IGenericDal<Highliht>
+    public interface IAboutService:IGenericService<About>
     {
-      
     }
 }
