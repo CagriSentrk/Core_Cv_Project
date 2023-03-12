@@ -47,7 +47,19 @@ namespace MyProject.Tests
             var deletedAbout = aboutService.TGetByID(about.About_Id);
             Assert.Null(deletedAbout);
         }
+        [Fact]
+        public void Update_Should_Update_About()
+        {
+            IAboutService aboutService = new AboutManager(new EfAboutDal());
+            About about = new About { };
+            aboutService.TAdd(about);
+            aboutService.TUpdate(about);
 
+            var updatedAbout = aboutService.TGetByID(about.About_Id);
+            Assert.True(updatedAbout != null);
+
+
+        }
 
     }
 }
