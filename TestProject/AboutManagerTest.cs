@@ -53,13 +53,19 @@ namespace MyProject.Tests
             IAboutService aboutService = new AboutManager(new EfAboutDal());
             About about = new About { };
             aboutService.TAdd(about);
+            // Update about properties
+            about.Title = "New Title";
+            about.Content = "New Content";
+
+            // Act
             aboutService.TUpdate(about);
 
+            // Assert
             var updatedAbout = aboutService.TGetByID(about.About_Id);
-            Assert.True(updatedAbout != null);
-
-
+            Assert.Equal("New Title", updatedAbout.Title);
+            Assert.Equal("New Content", updatedAbout.Content);
         }
+    
 
-    }
+}
 }
