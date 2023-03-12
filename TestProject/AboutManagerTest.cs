@@ -54,6 +54,8 @@ namespace MyProject.Tests
             About about = new About { };
             aboutService.TAdd(about);
             // Update about properties
+            about.About_Id = 1;
+
             about.Title = "New Title";
             about.Content = "New Content";
 
@@ -62,6 +64,7 @@ namespace MyProject.Tests
 
             // Assert
             var updatedAbout = aboutService.TGetByID(about.About_Id);
+            Assert.Equal(1,about.About_Id);
             Assert.Equal("New Title", updatedAbout.Title);
             Assert.Equal("New Content", updatedAbout.Content);
         }
