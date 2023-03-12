@@ -29,5 +29,25 @@ namespace MyProject.Tests
             Assert.Equal(about.About_Id, insertedAbout.About_Id);
             // check other properties here
         }
+        [Fact]
+        public void Remove_Should_Remove_About()
+        {
+            // Arrange
+            IAboutService aboutService = new AboutManager(new EfAboutDal());
+            About about = new About
+            {
+                // set about properties here
+            };
+            aboutService.TAdd(about);
+
+            // Act
+            aboutService.TDelete(about);
+
+            // Assert
+            var deletedAbout = aboutService.TGetByID(about.About_Id);
+            Assert.Null(deletedAbout);
+        }
+
+
     }
 }
