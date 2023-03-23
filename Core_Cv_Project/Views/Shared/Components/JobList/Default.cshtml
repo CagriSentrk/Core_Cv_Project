@@ -1,0 +1,76 @@
+﻿
+@{
+    Layout = null;
+}
+@{
+    var values = "";
+}
+@using EntityLayer.Concrete
+@model List<Job>
+<section class="section courses" id="courses">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <div class="section-heading">  
+                    <h2>İş İlanları</h2>
+                </div>
+            </div>
+        </div>
+      
+            
+     
+        <ul class="event_filter">
+            <li>
+                <a class="is_active" href="#!" data-filter="*">Hepsini Göster</a>
+            </li>
+            <li>
+                <a href="#!" data-filter=".Java">Java iş ilanları</a>  @*Burayı dinamik hale getir.*@
+            </li>
+            <li>
+                <a href="#!" data-filter=".DotNet">.Net iş ilanları</a>
+            </li>
+            <li>
+                    <a href="#!" data-filter=".Nodejs">Node.js İş ilanları</a>
+            </li>
+        </ul>
+        <div class="row event_box">
+             @foreach (var item in Model)
+                    {
+                if (item.Title == "Java")
+                {
+                    values = "Java";
+                }
+
+                if (item.Title == "DotNet")
+                {
+                    values = "DotNet";
+                }
+
+                if(item.Title=="Nodejs"){
+                    values="Nodejs";
+                }
+
+
+
+            <div class="col-lg-4 col-md-6 align-self-center mb-30 event_outer col-md-6 @values">
+                <div class="events_item">
+                   
+                    <div class="thumb">
+                        <a href="#"><img src="~/templatemo_586_scholar/assets/images/course-01.jpg" alt=""></a>
+                        <span class="category">@item.Title</span>
+                        
+                    </div>
+                    <div class="down-content">
+                        <span class="author">@item.Content</span>
+                        <h4>@item.Date.ToShortDateString()</h4>
+                    </div>
+                   
+                </div>
+            </div>
+            }
+          
+        </div>
+        
+    </div>
+       
+</section>

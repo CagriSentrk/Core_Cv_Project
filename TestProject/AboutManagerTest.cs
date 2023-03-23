@@ -55,7 +55,6 @@ namespace MyProject.Tests
             aboutService.TAdd(about);
             // Update about properties
             about.About_Id = 1;
-
             about.Title = "New Title";
             about.Content = "New Content";
 
