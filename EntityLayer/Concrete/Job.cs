@@ -16,6 +16,7 @@ namespace EntityLayer.Concrete
         public string img_Url { get; set; }
         public DateTime Date { get; set; }
         public bool Status { get; set; }
+        public string FilterName { get; set; }
         public ICollection<Employee>? Employees { get; set; }//Navigation properties 
     }
 }

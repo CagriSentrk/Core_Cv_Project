@@ -34,24 +34,8 @@
             </li>
         </ul>
         <div class="row event_box">
-             @foreach (var item in Model)
-                    {
-                if (item.Title == "Java")
-                {
-                    values = "Java";
-                }
-
-                if (item.Title == "DotNet")
-                {
-                    values = "DotNet";
-                }
-
-                if(item.Title=="Nodejs"){
-                    values="Nodejs";
-                }
-
-
-
+             @foreach (var item in Model){
+                values = item.FilterName;
             <div class="col-lg-4 col-md-6 align-self-center mb-30 event_outer col-md-6 @values">
                 <div class="events_item">
                    
