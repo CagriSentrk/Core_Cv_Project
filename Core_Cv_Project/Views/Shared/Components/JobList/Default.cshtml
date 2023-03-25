@@ -1,12 +1,11 @@
-﻿
+﻿@using EntityLayer.Concrete
+@model List<Job>
 @{
     Layout = null;
 }
 @{
     var values = "";
 }
-@using EntityLayer.Concrete
-@model List<Job>
 <section class="section courses" id="courses">
     <div class="container">
         <div class="row">
@@ -40,12 +39,12 @@
                 <div class="events_item">
                    
                     <div class="thumb">
-                        <a href="#"><img src="~/templatemo_586_scholar/assets/images/course-01.jpg" alt=""></a>
+                        <a href="/Job/Index/@item.Job_Id"><img src="~/templatemo_586_scholar/assets/images/course-01.jpg" alt=""></a>
                         <span class="category">@item.Title</span>
                         
                     </div>
                     <div class="down-content">
-                        <span class="author">@item.Content</span>
+                        <span class="author"></span>
                         <h4>@item.Date.ToShortDateString()</h4>
                     </div>
                    
