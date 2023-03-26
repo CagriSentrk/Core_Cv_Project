@@ -4,14 +4,16 @@ using DataAccessLayer.Concrete;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DataAccessLayer.Migrations
 {
     [DbContext(typeof(Context))]
-    partial class ContextModelSnapshot : ModelSnapshot
+    [Migration("20230326225318_deneme3")]
+    partial class deneme3
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -92,9 +94,6 @@ namespace DataAccessLayer.Migrations
                     b.Property<string>("Cv")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Job_Id")
-                        .HasColumnType("int");
-
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
@@ -102,8 +101,6 @@ namespace DataAccessLayer.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Employee_Id");
-
-                    b.HasIndex("Job_Id");
 
                     b.ToTable("Employees");
                 });
@@ -157,22 +154,6 @@ namespace DataAccessLayer.Migrations
                     b.HasKey("Job_Id");
 
                     b.ToTable("Jobs");
-                });
-
-            modelBuilder.Entity("EntityLayer.Concrete.Employee", b =>
-                {
-                    b.HasOne("EntityLayer.Concrete.Job", "Job")
-                        .WithMany("Employees")
-                        .HasForeignKey("Job_Id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Job");
-                });
-
-            modelBuilder.Entity("EntityLayer.Concrete.Job", b =>
-                {
-                    b.Navigation("Employees");
                 });
 #pragma warning restore 612, 618
         }

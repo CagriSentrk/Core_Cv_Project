@@ -16,7 +16,9 @@ namespace EntityLayer.Concrete
         public string SurName { get; set; }
         public string Content { get; set; }
         public string Cv { get; set; }
+        [ForeignKey("Job")]
+        public int Job_Id { get; set; }
+        public Job Job { get; set; }
 
-        public Job job { get; set; }
     }
 }
