@@ -14,7 +14,7 @@ namespace EntityLayer.Concrete
         public string Name { get; set; }
         public string SurName { get; set; }
         public string Content { get; set; }
-  
+        public string Cv { get; set; }
         public Job job { get; set; }
     }
 }

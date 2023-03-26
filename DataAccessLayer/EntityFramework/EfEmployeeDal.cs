@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace DataAccessLayer.EntityFramework
 {
-    internal class EfEmployeeDal: GenericRepository<Employee>, IEmployeeDal
+    public class EfEmployeeDal: GenericRepository<Employee>, IEmployeeDal
     {
     }
 }
