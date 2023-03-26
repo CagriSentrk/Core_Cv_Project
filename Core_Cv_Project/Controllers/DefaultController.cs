@@ -19,5 +19,9 @@ namespace Core_Cv_Project.Controllers
             contactmanager.TAdd(c);
             return PartialView();      //düzelt burayı.(Mesajı gönderince Partiala gidiyor direkt.)
         }
+        public PartialViewResult deneme()
+        {
+            return PartialView();
+        }
     }
 }

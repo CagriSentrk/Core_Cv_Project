@@ -12,20 +12,11 @@ namespace Core_Cv_Project.Controllers
         JobManager jobManager = new JobManager(new EfJobDal());
         public IActionResult Index(int id)
         {
+            ViewBag.v2 = id;
             var values = jobManager.TGetList().Where(x=>x.Job_Id==id).ToList();
             return View(values);
         }
-        [HttpGet]
-
-        public PartialViewResult SendCv()
-        {
-            ViewBag.v1 ="deneme";
-
-            return PartialView();
-        }
-
-
-        [HttpPost]
+   
         public PartialViewResult SendCv(Employee c)
         {
             
