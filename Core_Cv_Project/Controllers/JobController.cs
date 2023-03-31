@@ -40,11 +40,16 @@ namespace Core_Cv_Project.Controllers
 
         [HttpPost]
         public async Task<IActionResult> FileUpload(IFormFile formFile,Employee model)
-        {
+            {
             if (formFile != null)
             { 
 
                 var extent = Path.GetExtension(formFile.FileName);
+                if (extent.ToLower() != ".pdf")
+                {
+                    ModelState.AddModelError("File", "Sadece PDF dosyaları yükleyebilirsiniz.");
+                    return RedirectToAction("Index", "Default");
+                }
                 var randomName = ($"{Guid.NewGuid()}{extent}");
                 var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\img",randomName);
 
@@ -52,12 +57,18 @@ namespace Core_Cv_Project.Controllers
                 {
                     await formFile.CopyToAsync(stream);
                 }
+
                 EmployeeManager employeeManager = new EmployeeManager(new EfEmployeeDal());
                 model.Cv = randomName;
                 employeeManager.TAdd(model);
 
             }
-            return View();
+            else
+            {
+                ModelState.AddModelError("File", "Lütfen bir dosya seçin.");
+                return RedirectToAction("Index", "Default");
+            }
+            return RedirectToAction("Index","Default");
         }
 
 
